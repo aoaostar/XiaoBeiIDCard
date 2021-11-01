@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+    <title>小北学生身份码生成工具</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <meta name="author" content="Pluto">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="static/css/icon/iconfont.css">
+</head>
+
+<body class="mdui-theme-primary-teal mdui-theme-accent-pink">
+    <div id="app">
+
+        <div class="mdui-card xb-panel" v-if="!showIdCard">
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title">小工具</div>
+            </div>
+            <div class="mdui-card-content">
+                <div class="mdui-textfield">
+                    <label class="mdui-textfield-label">姓名：</label>
+                    <input class="mdui-textfield-input" type="text" v-model="userInfo.name" />
+                </div>
+                <div class="mdui-textfield">
+                    <label class="mdui-textfield-label">学号：</label>
+                    <input class="mdui-textfield-input" type="text" v-model="userInfo.studentId" />
+                </div>
+                <div class="mdui-textfield">
+                    <label class="mdui-textfield-label">班级：</label>
+                    <input class="mdui-textfield-input" type="text" v-model="userInfo.studentClass" />
+                </div>
+                <div class="mdui-textfield">
+                    <label class="mdui-textfield-label">学院：</label>
+                    <input class="mdui-textfield-input" type="text" v-model="userInfo.college" />
+                </div>
+                <div class="mdui-textfield">
+                    <label class="mdui-textfield-label">学校：</label>
+                    <input class="mdui-textfield-input" type="text" v-model="userInfo.school" />
+                </div>
+                <div class="mdui-m-y-2">
+                    <label class="mdui-switch">
+                        <span>是否绿码</span>&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" v-model="userInfo.isGreen" />
+                        <i class="mdui-switch-icon"></i>
+                    </label>
+                </div>
+                <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme mdui-btn-block"
+                    @click="submit">提交</button>
+            </div>
+
+
+        </div>
+        <div class="xb-result" v-else>
+            <div class="nav" @click="showIdCard=false">
+                <i class="mdui-icon material-icons">&#xe408;</i><span>身份码</span>
+            </div>
+            <div class="mdui-container">
+
+                <div class="time xb-card">
+                    {{currentTime}}
+                </div>
+                <div class="info xb-card">
+                    <h3 class="title">学生信息</h3>
+                    <div class="info-body mdui-clearfix">
+                        <ul class="mdui-float-left">
+                            <li>
+                                <span class="lable">
+                                    <i class="iconfont icon-account"></i><span>姓名</span>
+                                </span>
+
+                                <span class="content">{{userInfo.name}}</span>
+                            </li>
+                            <li>
+                                <span class="lable">
+                                    <i class="iconfont icon-idcard"></i><span>学号</span>
+                                </span>
+                                <span class="content">{{userInfo.studentId}}</span></li>
+                            <li>
+                                <span class="lable">
+                                    <i class="iconfont icon-people"></i><span>班级</span>
+                                </span>
+
+                                <span class="content">{{userInfo.studentClass}}</span></li>
+                            <li>
+                                <span class="lable">
+                                    <i class="iconfont icon-school"></i><span>学院</span>
+                                </span>
+
+                                <span class="content">{{userInfo.college}}</span></li>
+                            <li>
+                                <span class="lable">
+                                    <i class="iconfont icon-xueyuan"></i><span>学校</span>
+                                </span>
+                                <span class="content">{{userInfo.school}}</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div :class="userInfo.isGreen?'status green':'status'">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function getCurrentTime() {
+            var date = new Date();
+            var Y = date.getFullYear() + '-';
+            var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+            var D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ' ';
+            var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+            var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+            var s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+            return Y + M + D + h + m + s;
+        }
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                currentTime: getCurrentTime(),
+                timer: null,
+                showIdCard: false,
+                userInfo: {
+                    name: "",
+                    studentId: "",
+                    studentClass: "",
+                    college: "",
+                    school: "",
+                    isGreen: true,
+                }
+            },
+            created() {
+                userInfo = JSON.parse(localStorage.getItem("userInfo"))
+                if (userInfo) {
+
+                    this.userInfo = JSON.parse(localStorage.getItem("userInfo"))
+                }
+                // 实时时间
+                this.timer = setInterval(() => {
+                    this.currentTime = getCurrentTime()
+                }, 1000)
+            },
+            beforeDestroy() {
+                if (this.timer) {
+                    clearInterval(this.timer)
+                }
+            },
+            methods: {
+
+                submit() {
+                    localStorage.setItem("userInfo", JSON.stringify(this.userInfo))
+                    this.showIdCard = true
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
+
+</body>
+
+</html>

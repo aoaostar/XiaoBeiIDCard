@@ -1,0 +1,74 @@
+.xb-panel{
+    max-width: 600px;
+    width: 95vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.xb-result .nav{
+    padding: .8rem 1rem;
+    box-shadow: 0 1px 1px #e6e6e6;
+    display: flex;
+    align-items: center;
+}
+.xb-result{
+    background-color: #fbfcff;
+}
+.xb-result .nav{
+    background-color: #fff;
+    cursor: pointer;
+}
+.xb-result .nav span{
+    font-size: 1.1rem;
+}
+.xb-result .nav i{
+    font-size: 2rem;
+}
+
+.xb-result .status{
+    height: 7rem;
+    width: 100%;
+    background-color: red;
+}
+
+.xb-result .status.green{
+    background-color: #93f386;
+}
+.xb-result .xb-card{
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: 1px 1px 12px #e6e6e6;
+    border-radius: .5rem;
+    background-color: #fff;
+}
+.xb-result .time{
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1.3rem;
+}
+.xb-result .info .info-body{
+    text-align: center;
+}
+.xb-result .info ul{
+    list-style: none;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.xb-result .info li{
+    margin: 1rem;
+    text-align: left;
+}
+.xb-result .info .lable{
+    display: inline-block;
+    color: #cccccc;
+    width: 3.5rem;
+}
+.xb-result .info .content{
+    color: #000;
+    font-size: 1.03rem;
+}
+.xb-result .info .title{
+    text-align: center;
+}

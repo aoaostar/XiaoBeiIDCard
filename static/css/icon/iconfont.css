@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 2907245 */
+  src: url('iconfont.woff2?t=1635757678956') format('woff2'),
+       url('iconfont.woff?t=1635757678956') format('woff'),
+       url('iconfont.ttf?t=1635757678956') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-xueyuan:before {
+  content: "\e643";
+}
+
+.icon-school:before {
+  content: "\e618";
+}
+
+.icon-idcard:before {
+  content: "\e71d";
+}
+
+.icon-account:before {
+  content: "\e655";
+}
+
+.icon-people:before {
+  content: "\e82d";
+}
+

@@ -1,0 +1,44 @@
+{
+  "id": "2907245",
+  "name": "小北",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "714361",
+      "name": "学院",
+      "font_class": "xueyuan",
+      "unicode": "e643",
+      "unicode_decimal": 58947
+    },
+    {
+      "icon_id": "2922954",
+      "name": "school",
+      "font_class": "school",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "5466048",
+      "name": "idcard",
+      "font_class": "idcard",
+      "unicode": "e71d",
+      "unicode_decimal": 59165
+    },
+    {
+      "icon_id": "5776868",
+      "name": "account",
+      "font_class": "account",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "21896931",
+      "name": "people",
+      "font_class": "people",
+      "unicode": "e82d",
+      "unicode_decimal": 59437
+    }
+  ]
+}
